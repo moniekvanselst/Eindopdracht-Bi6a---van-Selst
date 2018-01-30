@@ -7,7 +7,11 @@ package virus;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +38,25 @@ public class VirusGUI extends javax.swing.JFrame {
         fileLabel = new javax.swing.JLabel();
         fileTextField = new javax.swing.JTextField();
         searchbutton = new javax.swing.JButton();
+        clasLabel = new javax.swing.JLabel();
+        clasDropdown = new javax.swing.JComboBox<>();
+        hostLabel = new javax.swing.JLabel();
+        Host1DropDown = new javax.swing.JComboBox<>();
+        Host2Dropdown = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lijst1Text = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lijst2Text = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        zelfdeText = new javax.swing.JTextArea();
+        lijst1Label = new javax.swing.JLabel();
+        lijst2Label = new javax.swing.JLabel();
+        zelfdeLabel = new javax.swing.JLabel();
+        IDSort = new javax.swing.JRadioButton();
+        clasSort = new javax.swing.JRadioButton();
+        hostsSort = new javax.swing.JRadioButton();
+        sorteerLabel = new javax.swing.JLabel();
+        openButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,28 +71,143 @@ public class VirusGUI extends javax.swing.JFrame {
             }
         });
 
+        clasLabel.setText("viral clasivication");
+
+        clasDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        hostLabel.setText("host ID");
+
+        Host1DropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        Host2Dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Host2Dropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Host2DropdownActionPerformed(evt);
+            }
+        });
+
+        lijst1Text.setColumns(20);
+        lijst1Text.setRows(5);
+        jScrollPane1.setViewportView(lijst1Text);
+
+        lijst2Text.setColumns(20);
+        lijst2Text.setRows(5);
+        jScrollPane2.setViewportView(lijst2Text);
+
+        zelfdeText.setColumns(20);
+        zelfdeText.setRows(5);
+        jScrollPane3.setViewportView(zelfdeText);
+
+        lijst1Label.setText("viruslijst");
+
+        lijst2Label.setText("viruslijst");
+
+        zelfdeLabel.setText("overeenkomst");
+
+        IDSort.setText("ID");
+
+        clasSort.setText("classificatie");
+
+        hostsSort.setText("aantal hosts");
+
+        sorteerLabel.setText("sortering");
+
+        openButton.setText("open");
+        openButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(fileLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchbutton)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(clasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                                    .addComponent(hostLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Host1DropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lijst1Label)
+                                    .addComponent(clasDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(fileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lijst2Label)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Host2Dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchbutton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(openButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hostsSort)
+                            .addComponent(sorteerLabel)
+                            .addComponent(IDSort)
+                            .addComponent(clasSort))
+                        .addGap(150, 150, 150)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(zelfdeLabel)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(clasLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchbutton)
+                            .addComponent(fileLabel)
+                            .addComponent(fileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(openButton))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Host1DropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hostLabel)
+                            .addComponent(Host2Dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(clasDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fileLabel)
-                    .addComponent(fileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchbutton))
-                .addContainerGap(251, Short.MAX_VALUE))
+                    .addComponent(lijst1Label)
+                    .addComponent(lijst2Label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(sorteerLabel)
+                        .addGap(4, 4, 4)
+                        .addComponent(IDSort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clasSort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hostsSort))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(zelfdeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -85,6 +223,31 @@ public class VirusGUI extends javax.swing.JFrame {
             fileTextField.setText(selectedFile.getAbsolutePath());
         }
     }//GEN-LAST:event_searchbuttonActionPerformed
+
+    private void Host2DropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Host2DropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Host2DropdownActionPerformed
+
+    private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
+        try {
+            inFile = new BufferedReader(new FileReader(fileTextField.getText()));
+            String line;
+            int count = 0;
+            while ((line = inFile.readLine()) != null) {
+                if (count > 0){
+                    String[] info = line.split("\t");
+                    
+                }
+                 count ++;
+            }
+            inFile.close(); 
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "File Error: " + e.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_openButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,11 +284,31 @@ public class VirusGUI extends javax.swing.JFrame {
         });
     }
 
+    private ArrayList<ArrayList<Integer>> hosts;
     private BufferedReader inFile;
     private JFileChooser fileChooser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Host1DropDown;
+    private javax.swing.JComboBox<String> Host2Dropdown;
+    private javax.swing.JRadioButton IDSort;
+    private javax.swing.JComboBox<String> clasDropdown;
+    private javax.swing.JLabel clasLabel;
+    private javax.swing.JRadioButton clasSort;
     private javax.swing.JLabel fileLabel;
     private javax.swing.JTextField fileTextField;
+    private javax.swing.JLabel hostLabel;
+    private javax.swing.JRadioButton hostsSort;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lijst1Label;
+    private javax.swing.JTextArea lijst1Text;
+    private javax.swing.JLabel lijst2Label;
+    private javax.swing.JTextArea lijst2Text;
+    private javax.swing.JButton openButton;
     private javax.swing.JButton searchbutton;
+    private javax.swing.JLabel sorteerLabel;
+    private javax.swing.JLabel zelfdeLabel;
+    javax.swing.JTextArea zelfdeText;
     // End of variables declaration//GEN-END:variables
 }
