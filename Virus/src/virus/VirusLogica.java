@@ -27,18 +27,21 @@ public class VirusLogica {
 //    static ArrayList<Integer> satilate = new ArrayList<>();
 //    static ArrayList<Integer> others = new ArrayList<>();
     static Hashtable<Integer, HashSet<Virus>> hosts = new Hashtable<>();
+    static Hashtable<String, Integer> hostsName = new Hashtable<>();
 
     public static void inladen(String[] info) {
         int virusID = Integer.parseInt(info[0]);
         int hostID = Integer.parseInt(info[7]);
+        String hostnaam = info[8] + "(" + info[7] + ")";
         String[] clasFind = info[2].split(";");
-        boolean alin = false;
+        boolean alIn = false;
         for (Virus virus : allVirus) {
             if (virus.getID() == virusID) {
-                alin = true;
+                alIn = true;
                 virus.addHost(hostID);
                 if (!hosts.containsKey(hostID)) {
                     hosts.put(hostID, new HashSet());
+                    hostsName.put(hostnaam, hostID);
                 }
                 HashSet<Virus> oud = hosts.get(hostID);
                 oud.add(virus);
@@ -46,17 +49,25 @@ public class VirusLogica {
                 break;
             }
         }
-        if (alin == false) {
+        if (alIn == false) {
             allVirus.add(new Virus(virusID, info[1], clasFind[1], hostID));
             if (!hosts.containsKey(hostID)) {
                 hosts.put(hostID, new HashSet());
+                hostsName.put(hostnaam, hostID);
             }
             HashSet<Virus> oud = hosts.get(hostID);
-            Virus virus = allVirus.get(allVirus.size()-1);
+            Virus virus = allVirus.get(allVirus.size() - 1);
             oud.add(virus);
-            hosts.put(hostID, oud); 
+            hosts.put(hostID, oud);
         }
-        
-        System.out.println(hosts.toString());
+
+//        System.out.println(hosts.toString());
+//            System.out.println(hostsName.toString());
     }
+
+    public static Hashtable<String, Integer> getHostsName() {
+        return hostsName;
+    }
+    
+    
 }

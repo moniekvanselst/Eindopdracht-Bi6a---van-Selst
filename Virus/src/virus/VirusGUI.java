@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -58,7 +59,6 @@ public class VirusGUI extends javax.swing.JFrame {
         hostsSort = new javax.swing.JRadioButton();
         sorteerLabel = new javax.swing.JLabel();
         openButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,9 +79,9 @@ public class VirusGUI extends javax.swing.JFrame {
 
         hostLabel.setText("host ID");
 
-        Host1DropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Host1DropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
 
-        Host2Dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Host2Dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
         Host2Dropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Host2DropdownActionPerformed(evt);
@@ -120,8 +120,6 @@ public class VirusGUI extends javax.swing.JFrame {
                 openButtonActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("C:\\Users\\van Selst\\Documents\\blok 6\\inf eindopdracht\\virusTest.txt");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,11 +165,8 @@ public class VirusGUI extends javax.swing.JFrame {
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(zelfdeLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1)))))
-                .addGap(0, 38, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,13 +207,8 @@ public class VirusGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(zelfdeLabel)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel1)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -238,6 +228,7 @@ public class VirusGUI extends javax.swing.JFrame {
 
     private void Host2DropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Host2DropdownActionPerformed
         // TODO add your handling code here:
+        System.out.println("sss");
     }//GEN-LAST:event_Host2DropdownActionPerformed
 
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
@@ -259,8 +250,17 @@ public class VirusGUI extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        setHostDropdown();
+        openButton.setEnabled(false);
     }//GEN-LAST:event_openButtonActionPerformed
 
+    private void setHostDropdown(){
+        Set<String> keys = VirusLogica.hostsName.keySet();
+        for (String key:keys){
+            Host1DropDown.addItem(key);
+            
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -310,7 +310,6 @@ public class VirusGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fileTextField;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JRadioButton hostsSort;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
