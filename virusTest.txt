@@ -5,4 +5,3 @@ virus tax id	virus name	virus lineage	refseq id	KEGG GENOME	KEGG DISEASE	DISEASE
 1241371	Abalone herpesvirus Victoria/AUS/2009	Viruses; dsDNA viruses, no RNA stage; Herpesvirales; unclassified Herpesvirales	NC_018874				36100	Haliotis rubra	Eukaryota; Metazoa; Mollusca; Gastropoda; Haliotoidea; Haliotidae; Haliotis		RefSeq
 491893	Abalone shriveling syndrome-associated virus	Viruses; dsDNA viruses, no RNA stage; unclassified dsDNA viruses	NC_011646				37770	Haliotis diversicolor aquatilis	Eukaryota; Metazoa; Mollusca; Gastropoda; Haliotoidea; Haliotidae; Haliotis; Haliotis diversicolor		RefSeq
 11788	Abelson murine leukemia virus	Viruses; Retro-transcribing viruses; Retroviridae; Orthoretrovirinae; Gammaretrovirus; unclassified Gammaretrovirus	NC_001499				10090	Mus musculus	Eukaryota; Metazoa; Chordata; Craniata; Mammalia; Euarchontoglires; Rodentia; Myomorpha; Muridae; Murinae; Mus; Mus		UniProt
-2025595	Abisko virus	Viruses; unclassified RNA viruses	NC_035470

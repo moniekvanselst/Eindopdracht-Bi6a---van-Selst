@@ -17,17 +17,22 @@ public class Virus {
 
     private int ID;
     private String soort, classificatie;
-    private ArrayList<Integer> hostList = new ArrayList<Integer>();
+    private HashSet<Integer> hostSet = new HashSet<>();
+   
 
     public Virus(int ID, String soort, String classificatie, int hostID) {
         this.ID = ID;
         this.soort = soort;
         this.classificatie = classificatie;
-        hostList.add(hostID);
+        hostSet.add(hostID);
+    }
+
+    Virus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void addHost(int hostID){
-        hostList.add(hostID);
+        hostSet.add(hostID);
     }
 
     public int getID() {
@@ -54,12 +59,12 @@ public class Virus {
         this.classificatie = classificatie;
     }
 
-    public ArrayList<Integer> getHostList() {
-        return hostList;
+    public HashSet<Integer> getHostSet() {
+        return hostSet;
     }
 
-    public void setHostList(ArrayList<Integer> hostList) {
-        this.hostList = hostList;
+    public void setHostSet(HashSet<Integer> hostSet) {
+        this.hostSet = hostSet;
     }
     
     

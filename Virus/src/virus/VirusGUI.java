@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -57,6 +58,7 @@ public class VirusGUI extends javax.swing.JFrame {
         hostsSort = new javax.swing.JRadioButton();
         sorteerLabel = new javax.swing.JLabel();
         openButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +121,8 @@ public class VirusGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("C:\\Users\\van Selst\\Documents\\blok 6\\inf eindopdracht\\virusTest.txt");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,8 +167,11 @@ public class VirusGUI extends javax.swing.JFrame {
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(zelfdeLabel)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 75, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)))))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,8 +212,13 @@ public class VirusGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(zelfdeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel1)))))
                 .addContainerGap())
         );
 
@@ -235,8 +247,8 @@ public class VirusGUI extends javax.swing.JFrame {
             int count = 0;
             while ((line = inFile.readLine()) != null) {
                 if (count > 0){
-                    String[] info = line.split("\t");
-                    
+                    String[] info = line.split("\t",-1);
+                    VirusLogica.inladen(info);
                 }
                  count ++;
             }
@@ -284,7 +296,7 @@ public class VirusGUI extends javax.swing.JFrame {
         });
     }
 
-    private ArrayList<ArrayList<Integer>> hosts;
+   
     private BufferedReader inFile;
     private JFileChooser fileChooser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -298,6 +310,7 @@ public class VirusGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fileTextField;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JRadioButton hostsSort;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
