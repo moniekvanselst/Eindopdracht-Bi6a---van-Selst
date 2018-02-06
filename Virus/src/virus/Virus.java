@@ -15,12 +15,12 @@ import java.util.*;
  */
 public class Virus {
 
-    private int ID;
+    private long ID;
     private String soort, classificatie;
-    private HashSet<Integer> hostSet = new HashSet<>();
+    private HashSet<Long> hostSet = new HashSet<>();
    
 
-    public Virus(int ID, String soort, String classificatie, int hostID) {
+    public Virus(long ID, String soort, String classificatie, long hostID) {
         this.ID = ID;
         this.soort = soort;
         this.classificatie = classificatie;
@@ -31,11 +31,11 @@ public class Virus {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void addHost(int hostID){
+    public void addHost(long hostID){
         hostSet.add(hostID);
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -59,11 +59,11 @@ public class Virus {
         this.classificatie = classificatie;
     }
 
-    public HashSet<Integer> getHostSet() {
+    public HashSet<Long> getHostSet() {
         return hostSet;
     }
 
-    public void setHostSet(HashSet<Integer> hostSet) {
+    public void setHostSet(HashSet<Long> hostSet) {
         this.hostSet = hostSet;
     }
     

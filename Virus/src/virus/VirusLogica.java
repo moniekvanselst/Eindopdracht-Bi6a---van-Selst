@@ -27,15 +27,15 @@ public class VirusLogica {
 //    static ArrayList<Integer> viroid = new ArrayList<>();
 //    static ArrayList<Integer> satilate = new ArrayList<>();
 //    static ArrayList<Integer> others = new ArrayList<>();
-    static Hashtable<Integer, HashSet<Virus>> hosts = new Hashtable<>();
-    static Hashtable<String, Integer> hostsName = new Hashtable<>();
+    static Hashtable<Long, HashSet<Virus>> hosts = new Hashtable<>();
+    static Hashtable<String, Long> hostsName = new Hashtable<>();
     static HashSet<Virus> setHost1 = new HashSet<>();
     static HashSet<Virus> setHost2 = new HashSet<>();
     static HashSet<Virus> overlap;
 
     public static void inladen(String[] info) {
-        int virusID = Integer.parseInt(info[0]);
-        int hostID = Integer.parseInt(info[7]);
+        long virusID = Long.parseLong(info[0]);
+        long  hostID = Long.parseLong(info[7]);
         String hostnaam = info[8] + "(" + info[7] + ")";
         String[] clasFind = info[2].split(";");
         boolean alIn = false;
@@ -69,13 +69,13 @@ public class VirusLogica {
 //            System.out.println(hostsName.toString());
     }
 
-    public static Hashtable<String, Integer> getHostsName() {
+    public static Hashtable<String, Long> getHostsName() {
         return hostsName;
     }
 
     public static void makeHost(String host, String clas, HashSet<Virus> curendSet) {
         curendSet.clear();
-        int hostID = hostsName.get(host);
+        long hostID = hostsName.get(host);
         if (clas.equals("Allen")) {
             curendSet.addAll(hosts.get(hostID));
             // setHost1 = hosts.get(hostID);

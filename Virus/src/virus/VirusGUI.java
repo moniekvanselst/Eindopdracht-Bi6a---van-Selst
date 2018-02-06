@@ -235,7 +235,7 @@ public class VirusGUI extends javax.swing.JFrame {
         lijst2Text.setText("");
         VirusLogica.makeHost(Host2Dropdown.getSelectedItem().toString(), clasDropdown.getSelectedItem().toString(), VirusLogica.setHost2);
         for (Virus virus : VirusLogica.setHost2) {
-            String virusID = Integer.toString(virus.getID());
+            String virusID = Long.toString(virus.getID());
             lijst2Text.append(virusID + "\n");
         }
         setOverlap();
@@ -249,7 +249,9 @@ public class VirusGUI extends javax.swing.JFrame {
             while ((line = inFile.readLine()) != null) {
                 if (!eersteRegel) {
                     String[] info = line.split("\t", -1);
-                    VirusLogica.inladen(info);
+                    if (!"".equals(info[7]) || info[0] != null || info[7] != null || !"".equals(info[0])) {
+                        VirusLogica.inladen(info);
+                    }
                 }
                 eersteRegel = false;
             }
@@ -268,20 +270,20 @@ public class VirusGUI extends javax.swing.JFrame {
         lijst1Text.setText("");
         VirusLogica.makeHost(Host1Dropdown.getSelectedItem().toString(), clasDropdown.getSelectedItem().toString(), VirusLogica.setHost1);
         for (Virus virus : VirusLogica.setHost1) {
-            String virusID = Integer.toString(virus.getID());
+            String virusID = Long.toString(virus.getID());
             lijst1Text.append(virusID + "\n");
         }
         setOverlap();
     }//GEN-LAST:event_Host1DropdownActionPerformed
 
-    private void setOverlap(){
+    private void setOverlap() {
         overlapText.setText("");
-       for (Virus virus : VirusLogica.overlap) {
-            String virusID = Integer.toString(virus.getID());
+        for (Virus virus : VirusLogica.overlap) {
+            String virusID = Long.toString(virus.getID());
             overlapText.append(virusID + "\n");
         }
     }
-    
+
     private void setHostDropdown() {
         Set<String> keys = VirusLogica.hostsName.keySet();
         for (String key : keys) {
