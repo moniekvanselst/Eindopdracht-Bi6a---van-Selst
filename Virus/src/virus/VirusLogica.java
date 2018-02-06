@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 /**
  *
@@ -28,6 +29,9 @@ public class VirusLogica {
 //    static ArrayList<Integer> others = new ArrayList<>();
     static Hashtable<Integer, HashSet<Virus>> hosts = new Hashtable<>();
     static Hashtable<String, Integer> hostsName = new Hashtable<>();
+    static HashSet<Virus> setHost1 = new HashSet<>();
+    static HashSet<Virus> setHost2 = new HashSet<>();
+    static HashSet<Virus> overlap;
 
     public static void inladen(String[] info) {
         int virusID = Integer.parseInt(info[0]);
@@ -68,6 +72,26 @@ public class VirusLogica {
     public static Hashtable<String, Integer> getHostsName() {
         return hostsName;
     }
-    
-    
+
+    public static void makeHost(String host, String clas, HashSet<Virus> curendSet) {
+        curendSet.clear();
+        int hostID = hostsName.get(host);
+        if (clas.equals("Allen")) {
+            curendSet.addAll(hosts.get(hostID));
+            // setHost1 = hosts.get(hostID);
+        } else {
+            for (Virus virus : hosts.get(hostID)) {
+                if (virus.getClassificatie().contains(clas)) {
+                    curendSet.add(virus);
+                }
+                if (clas.equals("Anderen") && !virus.getClassificatie().contains("ssDNA") && !virus.getClassificatie().contains("dsDNA") && !virus.getClassificatie().contains("ssRNA") && !virus.getClassificatie().contains("dsRNA") && !virus.getClassificatie().contains("Retro")) {
+                    curendSet.add(virus);
+                }
+            }
+        }
+        overlap = (HashSet<Virus>) setHost1.clone();
+        overlap.retainAll(setHost2);
+                
+    }
+
 }
