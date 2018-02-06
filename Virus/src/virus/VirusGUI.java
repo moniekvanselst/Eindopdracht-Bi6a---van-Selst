@@ -37,6 +37,7 @@ public class VirusGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         fileLabel = new javax.swing.JLabel();
         fileTextField = new javax.swing.JTextField();
         searchbutton = new javax.swing.JButton();
@@ -111,10 +112,13 @@ public class VirusGUI extends javax.swing.JFrame {
 
         overlapLabel.setText("overeenkomst");
 
+        buttonGroup1.add(IDSort);
         IDSort.setText("ID");
 
+        buttonGroup1.add(clasSort);
         clasSort.setText("classificatie");
 
+        buttonGroup1.add(hostsSort);
         hostsSort.setText("aantal hosts");
 
         sorteerLabel.setText("sortering");
@@ -249,7 +253,9 @@ public class VirusGUI extends javax.swing.JFrame {
             while ((line = inFile.readLine()) != null) {
                 if (!eersteRegel) {
                     String[] info = line.split("\t", -1);
-                    if (!"".equals(info[7]) || info[0] != null || info[7] != null || !"".equals(info[0])) {
+                    if (info[7].equals("") || info[0] == null || info[7] == null || info[0].equals("")) {
+                        
+                    }else{
                         VirusLogica.inladen(info);
                     }
                 }
@@ -333,6 +339,7 @@ public class VirusGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Host1Dropdown;
     private javax.swing.JComboBox<String> Host2Dropdown;
     private javax.swing.JRadioButton IDSort;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> clasDropdown;
     private javax.swing.JLabel clasLabel;
     private javax.swing.JRadioButton clasSort;

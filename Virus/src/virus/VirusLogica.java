@@ -34,8 +34,15 @@ public class VirusLogica {
     static HashSet<Virus> overlap;
 
     public static void inladen(String[] info) {
+        System.out.println("a");
         long virusID = Long.parseLong(info[0]);
+        System.out.println("aa");
+        if (info[7].equals("")){
+            System.out.println("ww");
+        }
+        System.out.println(info[7]);
         long  hostID = Long.parseLong(info[7]);
+        System.out.println("b");
         String hostnaam = info[8] + "(" + info[7] + ")";
         String[] clasFind = info[2].split(";");
         boolean alIn = false;
@@ -53,6 +60,7 @@ public class VirusLogica {
                 break;
             }
         }
+        System.out.println("c");
         if (alIn == false) {
             allVirus.add(new Virus(virusID, info[1], clasFind[1], hostID));
             if (!hosts.containsKey(hostID)) {
@@ -64,6 +72,7 @@ public class VirusLogica {
             oud.add(virus);
             hosts.put(hostID, oud);
         }
+        System.out.println("d");
 
 //        System.out.println(hosts.toString());
 //            System.out.println(hostsName.toString());
