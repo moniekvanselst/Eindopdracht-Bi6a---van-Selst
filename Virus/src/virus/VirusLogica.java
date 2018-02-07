@@ -6,10 +6,12 @@
 package virus;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -31,18 +33,13 @@ public class VirusLogica {
     static Hashtable<String, Long> hostsName = new Hashtable<>();
     static HashSet<Virus> setHost1 = new HashSet<>();
     static HashSet<Virus> setHost2 = new HashSet<>();
-    static HashSet<Virus> overlap;
+    static HashSet<Virus> setOverlap;
+    static String sort = "ID";
+    static ArrayList<Virus> lijstHost1, lijstHost2, lijstOverlap;
 
     public static void inladen(String[] info) {
-        System.out.println("a");
         long virusID = Long.parseLong(info[0]);
-        System.out.println("aa");
-        if (info[7].equals("")){
-            System.out.println("ww");
-        }
-        System.out.println(info[7]);
-        long  hostID = Long.parseLong(info[7]);
-        System.out.println("b");
+        long hostID = Long.parseLong(info[7]);
         String hostnaam = info[8] + "(" + info[7] + ")";
         String[] clasFind = info[2].split(";");
         boolean alIn = false;
@@ -60,7 +57,6 @@ public class VirusLogica {
                 break;
             }
         }
-        System.out.println("c");
         if (alIn == false) {
             allVirus.add(new Virus(virusID, info[1], clasFind[1], hostID));
             if (!hosts.containsKey(hostID)) {
@@ -98,9 +94,26 @@ public class VirusLogica {
                 }
             }
         }
-        overlap = (HashSet<Virus>) setHost1.clone();
-        overlap.retainAll(setHost2);
-                
+        setOverlap = (HashSet<Virus>) setHost1.clone();
+        setOverlap.retainAll(setHost2);
+
+    }
+
+    public static void getSorted(String type) {
+        sort = type;
+        lijstHost1 = new ArrayList<Virus>(setHost1);
+        lijstHost2 = new ArrayList<Virus>(setHost2);
+        lijstOverlap = new ArrayList<Virus>(setOverlap);
+        if (setHost1.size() > 1) {
+            Collections.sort(lijstHost1);
+        }
+        if (setHost2.size() > 1) {
+            Collections.sort(lijstHost2);
+        }
+        if (setOverlap.size() > 1) {
+            Collections.sort(lijstOverlap);
+        }
+        // ArrayList<Virus> lijstHost1 =(ArrayList<Virus>) setHost1.toArray();
     }
 
 }

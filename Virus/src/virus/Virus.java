@@ -7,18 +7,15 @@ package virus;
 
 import java.util.*;
 
-
-
 /**
  *
  * @author van Selst
  */
-public class Virus {
+public class Virus implements Comparable {
 
     private long ID;
     private String soort, classificatie;
     private HashSet<Long> hostSet = new HashSet<>();
-   
 
     public Virus(long ID, String soort, String classificatie, long hostID) {
         this.ID = ID;
@@ -30,8 +27,8 @@ public class Virus {
     Virus() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public void addHost(long hostID){
+
+    public void addHost(long hostID) {
         hostSet.add(hostID);
     }
 
@@ -66,7 +63,32 @@ public class Virus {
     public void setHostSet(HashSet<Long> hostSet) {
         this.hostSet = hostSet;
     }
-    
-    
-    
+
+    @Override
+    public int compareTo(Object t) {
+        Virus v = (Virus) t;
+        if (VirusLogica.sort.equals("ID")) {
+            if (v.ID > this.ID) {
+                return -1;
+            }
+            if (v.ID < this.ID) {
+                return +1;
+            } else {
+                return 0;
+            }
+        } else if (VirusLogica.sort.equals("clas")) {
+            int i = v.classificatie.compareTo(this.classificatie);
+            return i;
+        } else {
+            if (v.hostSet.size() > this.hostSet.size()) {
+                return -1;
+            }
+            if (v.hostSet.size() < this.hostSet.size()) {
+                return +1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
 }

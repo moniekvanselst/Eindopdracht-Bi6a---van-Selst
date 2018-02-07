@@ -113,13 +113,29 @@ public class VirusGUI extends javax.swing.JFrame {
         overlapLabel.setText("overeenkomst");
 
         buttonGroup1.add(IDSort);
+        IDSort.setSelected(true);
         IDSort.setText("ID");
+        IDSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDSortActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(clasSort);
         clasSort.setText("classificatie");
+        clasSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clasSortActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(hostsSort);
         hostsSort.setText("aantal hosts");
+        hostsSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hostsSortActionPerformed(evt);
+            }
+        });
 
         sorteerLabel.setText("sortering");
 
@@ -282,9 +298,41 @@ public class VirusGUI extends javax.swing.JFrame {
         setOverlap();
     }//GEN-LAST:event_Host1DropdownActionPerformed
 
+    private void setText(){
+        lijst1Text.setText("");
+        lijst2Text.setText("");
+        overlapText.setText("");
+        for (Virus virus : VirusLogica.lijstHost1) {
+            String virusID = Long.toString(virus.getID());
+            lijst1Text.append(virusID + "\n");
+        }
+        for (Virus virus : VirusLogica.lijstHost2) {
+            String virusID = Long.toString(virus.getID());
+            lijst2Text.append(virusID + "\n");
+        }
+        for (Virus virus : VirusLogica.lijstOverlap) {
+            String virusID = Long.toString(virus.getID());
+            overlapText.append(virusID + "\n");
+        }
+    }
+    private void IDSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDSortActionPerformed
+        VirusLogica.getSorted("ID");
+        setText();
+    }//GEN-LAST:event_IDSortActionPerformed
+
+    private void clasSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clasSortActionPerformed
+        VirusLogica.getSorted("clas");
+        setText();
+    }//GEN-LAST:event_clasSortActionPerformed
+
+    private void hostsSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostsSortActionPerformed
+        VirusLogica.getSorted("aantal hosts");
+        setText();
+    }//GEN-LAST:event_hostsSortActionPerformed
+
     private void setOverlap() {
         overlapText.setText("");
-        for (Virus virus : VirusLogica.overlap) {
+        for (Virus virus : VirusLogica.setOverlap) {
             String virusID = Long.toString(virus.getID());
             overlapText.append(virusID + "\n");
         }
