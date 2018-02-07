@@ -149,8 +149,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="fileTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cvan Selst\u005cDocuments\u005cblok 6\u005cinf eindopdracht\u005cvirusTest.txt" containsInvalidXMLChars="true"/>
+        <Property name="text" type="java.lang.String" value="file"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="searchbutton">
       <Properties>

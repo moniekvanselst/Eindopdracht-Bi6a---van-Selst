@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package virus;
 
 import java.util.*;
@@ -10,6 +5,7 @@ import java.util.*;
 /**
  *
  * @author van Selst
+ * @data 30-01-1018
  */
 public class Virus implements Comparable {
 
@@ -17,15 +13,20 @@ public class Virus implements Comparable {
     private String soort, classificatie;
     private HashSet<Long> hostSet = new HashSet<>();
 
+    /**
+     * In deze functie word het virus object gemaakt en alle paramaters
+     * ingevuld. Word aangeroepen door inladen() in VirusLogica.
+     *
+     * @param ID
+     * @param soort
+     * @param classificatie
+     * @param hostID
+     */
     public Virus(long ID, String soort, String classificatie, long hostID) {
         this.ID = ID;
         this.soort = soort;
         this.classificatie = classificatie;
         hostSet.add(hostID);
-    }
-
-    Virus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void addHost(long hostID) {
@@ -64,6 +65,14 @@ public class Virus implements Comparable {
         this.hostSet = hostSet;
     }
 
+    /**
+     * Hier word het huidige object vergeleken met een meegegeven object. Dit
+     * word gedaan op ID, classificatie of de grrote van hostSet (dus aantal
+     * hosts). Word aangeroepen door getSorted in VirusLogica.
+     *
+     * @param t
+     * @return
+     */
     @Override
     public int compareTo(Object t) {
         Virus v = (Virus) t;
